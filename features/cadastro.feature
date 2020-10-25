@@ -1,35 +1,33 @@
-#language: pt
+            #language: pt
 
-Funcionalidade: Cadastro de Usuários
-    Sendo um visitante do site Parodify
-    Quero fazer o meu cadastro
-    Para que eu possa ouvir minhas músicas favoritas
+            Funcionalidade: Cadastro de Usuários
+            Sendo um visitante do site Parodify
+            Quero fazer o meu cadastro
+            Para que eu possa ouvir minhas músicas favoritas
 
-@happy
-Cenario: Cadastro
-    Dado que acesso a página de cadastro
-    Quando submeto o meu cadastro com: 
+            @happy
+            Cenario: Cadastro
+            Dado que acesso a página de cadastro
+            Quando submeto o meu cadastro com:
             | email          | fernando@yahoo.com |
             | senha          | pwd123             |
             | senha_confirma | pwd123             |
-    Então devo ser redirecionado para a área logada
+            Então devo ser redirecionado para a área logada
 
-Cenario: Email não informado
-    Dado que acesso a página de cadastro
-    Quando submeto o meu cadastro sem o email
-    Então devo ver Oops! Informe seu email
+            @alternative
+            Esquema do Cenário: Tentativa de Cadastro
 
-Cenario: Senha não informada
-    Dado que acesso a página de cadastro
-    Quando submeto o meu cadastro sem a senha
-    Então devo ver Oops! Informe sua senha
+            Dado que acesso a página de cadastro
+            Quando submeto o meu cadastro com:
+            | email          | <email>          |
+            | senha          | <senha>          |
+            | senha_confirma | <confirma_senha> |
+            Então devo ver a mensagem: "<mensagem_saida>"
 
-Cenario: Senha divergente
-    Dado que acesso a página de cadastro
-    Quando submeto meu cadastro com senha divergente
-    Então devo ver Opps! Senhas não são iguais
+            Exemplos:
+            | email              | senha  | confirma_senha | mensagem_saida                       |
+            |                    | pwd123 | pwd123         | Oops! Informe seu email.             |
+            | fernando@yahoo.com |        |                | Oops! Informe sua senha.             |
+            | fernando@yahoo.com | pwd123 | abc123         | Oops! Senhas não são iguais.         |
+            |                    |        |                | Oops! Informe seu email e sua senha. |
 
-Cenario: Nenhum campo preenchido
-    Dado que acesso a página de cadastro
-    Quando submeto meu cadastro sem preencher os campos
-    Então devo ver Opps! Informe seu email e sua senha

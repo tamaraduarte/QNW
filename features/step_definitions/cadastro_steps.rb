@@ -19,4 +19,9 @@ end
 Então('devo ser redirecionado para a área logada') do
     expect(page).to have_css '.dashboard'
 end
+
+Então('devo ver a mensagem: {string}') do |expected_message|
+    alert = find(".message p")
+    expect(alert.text).to eql expected_message
+end
   
