@@ -1,5 +1,6 @@
 #language: pt
 
+@login
 Funcionalidade: Login
     Sendo um usuário previamente cadastrado
     Quero acessar o sistema com meu email e senha

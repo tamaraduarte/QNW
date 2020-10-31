@@ -1,5 +1,5 @@
             #language: pt
-
+            @reproduzir
             Funcionalidade: Reproduzir Paródia
             Sendo um usuário cadastrado
             Quero reproduzir músicas no player do Parodify

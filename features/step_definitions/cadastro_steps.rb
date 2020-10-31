@@ -1,18 +1,9 @@
 Dado("que acesso a página de cadastro") do
-  visit "/"
-  click_on "EXPERIMENTE AGORA"
+  goto_cadastro
 end
 
 Quando("submeto o meu cadastro com:") do |table|
-  user = table.rows_hash
-
-  delorean user[:email]
-
-  find("input[name*=email]").set user[:email]
-  find("input[placeholder='Sua senha secreta']").set user[:senha]
-  find("input[placeholder='Confirme a senha']").set user[:senha_confirma]
-
-  click_on "Cadastrar"
+  cadastro_with(table)
 end
 
 Então("devo ser redirecionado para a área logada") do
@@ -20,8 +11,7 @@ Então("devo ser redirecionado para a área logada") do
 end
 
 Então("devo ver a mensagem: {string}") do |expect_message|
-  alert = find(".message p")
-  expect(alert.text).to eql expect_message
+  expect(cadastro_alert).to eql expect_message
 end
 
 Quando("acesso a página de cadastro") do
